@@ -20,6 +20,7 @@ public class Szam {
         
         Locale.setDefault(new Locale("hu", "HU")); //Végeredmény (eredmeny) megfelelő megjelenítéséhez
         
+        boolean error = false;
         for (int i = 0; i < szam.length(); i++) { //Character tömbből Integer tömbbé
             romaiSzam.add(szam.charAt(i));
             
@@ -47,17 +48,20 @@ public class Szam {
                         break;
                     default:
                         System.out.println("Használj római számokat");
-                        arabSzamLista.add(0);
-                        break;
-                }    
+                        error = true;
+                }  
+            
+            if (error) {
+                    break;
+                } 
         }
    
     }
     
-    public static int getEredmeny() throws java.io.IOException {
+     public static int getEredmeny() throws IOException {
         int szl = arabSzamLista.size() - 1;
-        while ( szl > 0) { //Lista vizsgálata hátulról elölre
-            if (arabSzamLista.get(szl) <= arabSzamLista.get(szl - 1)) {
+        while ( szl >= 0) { //Lista vizsgálata hátulról elölre
+            if ((szl == 0) || (arabSzamLista.get(szl) <= arabSzamLista.get(szl - 1))) {
                 eredmeny = eredmeny + arabSzamLista.get(szl);
                 szl--;
             }
@@ -66,10 +70,6 @@ public class Szam {
                 szl--;
                 szl--;
             }
-        }
-       
-        if (arabSzamLista.get(0) >= arabSzamLista.get(1)) { //IX helyett 10-et jelenített meg
-            eredmeny = eredmeny + arabSzamLista.get(0);
         }
        
         return eredmeny;
