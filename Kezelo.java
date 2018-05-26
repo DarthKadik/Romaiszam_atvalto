@@ -18,15 +18,9 @@ public class Kezelo {
        
         String szam = szkenner.nextLine();
         Szam.setSzam(szam); //A szám osztály setSzam metódusának hívása, a szam String átalakítása Integer tömbbé
-        new Window();   //Ablak megjelenítése (csak úgy)
+        System.out.println(Szam.getEredmeny);   //Eredmény kiírása
         szkenner.close();
        
-    }
-    
-    public static String getEredmenyString() throws java.io.IOException {  //javax.swing.JLabel paramétere String kell, hogy legyen, eredmeny átalakítása Stringé
-        DecimalFormat formatum = new DecimalFormat();
-        return formatum.format(Szam.getEredmeny());
-        
     }
     
 }
