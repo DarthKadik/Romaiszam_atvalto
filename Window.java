@@ -18,14 +18,13 @@ public class Window extends JFrame implements ActionListener{ //JFrame alosztál
     
     JButton gomb =new JButton("OK");
     JLabel eredmenyLabel = new JLabel("");
+    JLabel eredmenyElotag = new JLabel("Az eredmény:");
     JTextField bevitel = new JTextField(5);
     
     
     public Window() throws java.io.IOException{
         setTitle("Római szám átváltó");
         add(bevitel);
-        add(new JLabel("Az eredmény:"));
-        add(eredmenyLabel);
         add(gomb);
         gomb.addActionListener(this);
         setSize(400, 200);
@@ -39,6 +38,8 @@ public class Window extends JFrame implements ActionListener{ //JFrame alosztál
     @Override
     public void actionPerformed(ActionEvent e){
         try {
+            add(eredmenyElotag);
+            add(eredmenyLabel);
             Szam.setSzam(bevitel.getText());
         } catch (IOException ex) {
             eredmenyLabel.setText("Ajjaj, valami baj van");
@@ -47,5 +48,11 @@ public class Window extends JFrame implements ActionListener{ //JFrame alosztál
     
     public  void setEredmenyLabel(int szam) {
         this.eredmenyLabel.setText(Integer.toString(szam));
+    }
+    
+    public void error() {
+        this.bevitel.setVisible(false);
+        this.eredmenyElotag.setVisible(false);
+        this.eredmenyLabel.setText("Használj római számokat (pl.: MMCD)");
     }
 }

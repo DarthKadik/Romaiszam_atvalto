@@ -48,7 +48,8 @@ public class Szam {
                         arabSzamLista.add(1000);
                         break;
                     default:
-                        System.out.println("Használj római számokat");
+                        Window hibaÜzenet = new Window();
+                        hibaÜzenet.error();
                         //arabSzamLista.add(0)
                         error = true;
                         
