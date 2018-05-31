@@ -3,10 +3,8 @@
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Locale;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 
 public class Szam {
@@ -17,6 +15,9 @@ public class Szam {
 
             
     public static void setSzam(String szam) throws IOException {
+        romaiSzam.clear();
+        arabSzamLista.clear();
+        eredmeny = 0;
         
         Locale.setDefault(new Locale("hu", "HU")); //Végeredmény (eredmeny) megfelelő megjelenítéséhez
         
@@ -48,17 +49,17 @@ public class Szam {
                         break;
                     default:
                         System.out.println("Használj római számokat");
+                        //arabSzamLista.add(0)
                         error = true;
-                }  
-            
-            if (error) {
+                        
+                }
+                
+                if (error) {
                     break;
                 } 
+         
         }
-   
-    }
-    
-     public static int getEredmeny() throws IOException {
+
         int szl = arabSzamLista.size() - 1;
         while ( szl >= 0) { //Lista vizsgálata hátulról elölre
             if ((szl == 0) || (arabSzamLista.get(szl) <= arabSzamLista.get(szl - 1))) {
@@ -72,7 +73,7 @@ public class Szam {
             }
         }
        
-        return eredmeny;
+       Kezelo.setEredmenyMeghivasa(eredmeny);
     }
     
 }
